@@ -43,146 +43,171 @@
       font-size: 24px;
       margin-top: 20px;
     }
+    
+    #progress-bar {
+      display: none; /* Hide the progress bar initially */
+      width: 80%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    #progress {
+      height: 100%;
+      width: 0;
+      background-color: #4CAF50;
+    }
   </style>
   <script>
+    var totalWeeks = 41; // Total number of weeks in pregnancy
+
     function obtenerNumeroSemana() {
       var fechaActual = new Date();
       var referencia = new Date(2023, 11, 18);
       var milisegundosTranscurridos = fechaActual.getTime() - referencia.getTime();
       var diasTranscurridos = Math.floor(milisegundosTranscurridos / (1000 * 60 * 60 * 24));
       var numeroSemana = Math.floor(diasTranscurridos / 7) + 9;
-      var mensaje = "";
-      switch (numeroSemana) {
-            case 1:
-    mensaje= "Semana 1: Concepción e implantación del óvulo fecundado en el útero."
-    break;
-      case 2:
-          mensaje= "Semana 2: Formación del cigoto y su viaje hacia el útero."
-          break;
-      case 3:
-          mensaje= "Semana 3: Desarrollo de las tres capas germinales y del sistema nervioso."
-          break;
-      case 4:
-          mensaje= "Semana 4: Formación del cordón umbilical y los primeros latidos del corazón."
-          break;
-      case 5:
-          mensaje= "Semana 5: Desarrollo de los vasos sanguíneos y la placenta."
-          break;
-      case 6:
-          mensaje= "Semana 6: Formación de los ojos, oídos y aparato cardiovascular."
-          break;
-      case 7:
-          mensaje= "Semana 7: Aparición de los brotes de los brazos y piernas."
-          break;
-      case 8:
-          mensaje= "Semana 8: Transformación del embrión en feto y formación de los dedos."
-          break;
-      case 9:
-          mensaje= "Semana 9: Desarrollo de los órganos internos y los dientes permanentes."
-          break;
-      case 10:
-          mensaje= "Semana 10: Inicio del desarrollo de los órganos sexuales y movimientos del feto."
-          break;
-      case 11:
-          mensaje= "Semana 11: Formación de los genitales externos y refinamiento de los rasgos faciales."
-          break;
-      case 12:
-          mensaje= "Semana 12: Estiramiento de los músculos y desarrollo del sistema linfático."
-          break;
-      case 13:
-          mensaje= "Semana 13: Finalización del primer trimestre y crecimiento de uñas y cabello."
-          break;
-      case 14:
-          mensaje= "Semana 14: Desarrollo del sistema digestivo y coordinación de movimientos."
-          break;
-      case 15:
-          mensaje= "Semana 15: Movimientos cada vez más perceptibles y desarrollo del sistema óseo."
-          break;
-      case 16:
-          mensaje= "Semana 16: Fortalecimiento de los huesos y maduración del sistema nervioso."
-          break;
-      case 17:
-          mensaje= "Semana 17: Desarrollo del oído y reflejos más pronunciados en el feto."
-          break;
-      case 18:
-          mensaje= "Semana 18: Aparición del vello corporal y desarrollo del sistema respiratorio."
-          break;
-      case 19:
-          mensaje= "Semana 19: Crecimiento del útero y aumento de los movimientos fetales."
-          break;
-      case 20:
-          mensaje= "Semana 20: Formación del tejido adiposo y desarrollo de las huellas dactilares."
-          break;
-      case 21:
-          mensaje= "Semana 21: Ampliación de los pulmones y refinamiento de los sentidos del tacto y el gusto."
-          break;
-      case 22:
-          mensaje= "Semana 22: Desarrollo de las pestañas y las cejas, y mayor respuesta a la luz."
-          break;
-      case 23:
-          mensaje= "Semana 23: Maduración de los pulmones y aumento de la capacidad auditiva."
-          break;
-      case 24:
-          mensaje= "Semana 24: Apertura de los párpados y inicio de la producción de surfactante pulmonar."
-          break;
-      case 25:
-          mensaje= "Semana 25: Desarrollo de los órganos sexuales externos en los fetos femeninos."
-          break;
-      case 26:
-          mensaje= "Semana 26: Ganancia de peso rápida y apertura de los ojos en respuesta a la luz."
-          break;
-      case 27:
-          mensaje= "Semana 27: Formación del patrón de sueño y vigilia, y crecimiento acelerado."
-          break;
-      case 28:
-          mensaje= "Semana 28: Tercer trimestre del embarazo y desarrollo del sistema inmunológico."
-          break;
-      case 29:
-          mensaje= "Semana 29: Crecimiento cerebral acelerado y mayor control de movimientos corporales."
-          break;
-      case 30:
-          mensaje= "Semana 30: Inicio del almacenamiento de grasa y desarrollo del sistema digestivo."
-          break;
-      case 31:
-          mensaje= "Semana 31: Maduración del cerebro y los pulmones, y mayor desarrollo del sistema inmunológico."
-          break;
-      case 32:
-          mensaje= "Semana 32: Ganancia de peso más rápida y mayor control de los movimientos fetales."
-          break;
-      case 33:
-          mensaje= "Semana 33: Desarrollo del sistema óseo y mayor control de la temperatura corporal."
-          break;
-      case 34:
-          mensaje= "Semana 34: Crecimiento del vello corporal y apertura de los ojos más frecuente."
-          break;
-      case 35:
-          mensaje= "Semana 35: Aumento de los movimientos fetales y preparación para el parto."
-          break;
-      case 36:
-          mensaje= "Semana 36: Maduración del sistema circulatorio y desarrollo del sistema reproductivo."
-          break;
-      case 37:
-          mensaje= "Semana 37: Considerado a término, el bebé está completamente formado y preparado para el nacimiento."
-          break;
-      case 38:
-          mensaje= "Semana 38: Peso y tamaño aproximados a los del bebé al nacer, mejora de la posición del bebé para el parto."
-          break;
-      case 39:
-          mensaje= "Semana 39: Bebé listo para nacer, podemos experimentar algunas contracciones de Braxton Hicks."
-          break
-      case 40:
-            mensaje =  "Semana 40: Última semana de embarazo, preparándose para el parto."
-      case 41:
-            mensaje =  "Semana 41: Ya no queda nada! "
-      default: 
-            mensaje: "Semana " + numeroSemana + ": Se agrandó la familia!"
-      }
+
+      var progress = Math.floor(numeroSemana / totalWeeks * 100); // Calculate progress percentage
       
+      var progressElement = document.getElementById("progress");
+      progressElement.style.width = progress + "%"; // Update progress bar width
 
+      var progressBar = document.getElementById("progress-bar");
+      progressBar.style.display = "block"; // Show the progress bar
 
+      var mensaje;
+      switch (numeroSemana) {
+                case 1:
+          mensaje= "Semana 1: Concepción e implantación del óvulo fecundado en el útero.";
+          break;
+        case 2:
+          mensaje= "Semana 2: Formación del cigoto y su viaje hacia el útero.";
+          break;
+        case 3:
+              mensaje= "Semana 3: Desarrollo de las tres capas germinales y del sistema nervioso."
+              break;
+          case 4:
+              mensaje= "Semana 4: Formación del cordón umbilical y los primeros latidos del corazón."
+              break;
+          case 5:
+              mensaje= "Semana 5: Desarrollo de los vasos sanguíneos y la placenta."
+              break;
+          case 6:
+              mensaje= "Semana 6: Formación de los ojos, oídos y aparato cardiovascular."
+              break;
+          case 7:
+              mensaje= "Semana 7: Aparición de los brotes de los brazos y piernas."
+              break;
+          case 8:
+              mensaje= "Semana 8: Transformación del embrión en feto y formación de los dedos."
+              break;
+          case 9:
+              mensaje= "Semana 9: Desarrollo de los órganos internos y los dientes permanentes."
+              break;
+          case 10:
+              mensaje= "Semana 10: Inicio del desarrollo de los órganos sexuales y movimientos del feto."
+              break;
+          case 11:
+              mensaje= "Semana 11: Formación de los genitales externos y refinamiento de los rasgos faciales."
+              break;
+          case 12:
+              mensaje= "Semana 12: Estiramiento de los músculos y desarrollo del sistema linfático."
+              break;
+          case 13:
+              mensaje= "Semana 13: Finalización del primer trimestre y crecimiento de uñas y cabello."
+              break;
+          case 14:
+              mensaje= "Semana 14: Desarrollo del sistema digestivo y coordinación de movimientos."
+              break;
+          case 15:
+              mensaje= "Semana 15: Movimientos cada vez más perceptibles y desarrollo del sistema óseo."
+              break;
+          case 16:
+              mensaje= "Semana 16: Fortalecimiento de los huesos y maduración del sistema nervioso."
+              break;
+          case 17:
+              mensaje= "Semana 17: Desarrollo del oído y reflejos más pronunciados en el feto."
+              break;
+          case 18:
+              mensaje= "Semana 18: Aparición del vello corporal y desarrollo del sistema respiratorio."
+              break;
+          case 19:
+              mensaje= "Semana 19: Crecimiento del útero y aumento de los movimientos fetales."
+              break;
+          case 20:
+              mensaje= "Semana 20: Formación del tejido adiposo y desarrollo de las huellas dactilares."
+              break;
+          case 21:
+              mensaje= "Semana 21: Ampliación de los pulmones y refinamiento de los sentidos del tacto y el gusto."
+              break;
+          case 22:
+              mensaje= "Semana 22: Desarrollo de las pestañas y las cejas, y mayor respuesta a la luz."
+              break;
+          case 23:
+              mensaje= "Semana 23: Maduración de los pulmones y aumento de la capacidad auditiva."
+              break;
+          case 24:
+              mensaje= "Semana 24: Apertura de los párpados y inicio de la producción de surfactante pulmonar."
+              break;
+          case 25:
+              mensaje= "Semana 25: Desarrollo de los órganos sexuales externos en los fetos femeninos."
+              break;
+          case 26:
+              mensaje= "Semana 26: Ganancia de peso rápida y apertura de los ojos en respuesta a la luz."
+              break;
+          case 27:
+              mensaje= "Semana 27: Formación del patrón de sueño y vigilia, y crecimiento acelerado."
+              break;
+          case 28:
+              mensaje= "Semana 28: Tercer trimestre del embarazo y desarrollo del sistema inmunológico."
+              break;
+          case 29:
+              mensaje= "Semana 29: Crecimiento cerebral acelerado y mayor control de movimientos corporales."
+              break;
+          case 30:
+              mensaje= "Semana 30: Inicio del almacenamiento de grasa y desarrollo del sistema digestivo."
+              break;
+          case 31:
+              mensaje= "Semana 31: Maduración del cerebro y los pulmones, y mayor desarrollo del sistema inmunológico."
+              break;
+          case 32:
+              mensaje= "Semana 32: Ganancia de peso más rápida y mayor control de los movimientos fetales."
+              break;
+          case 33:
+              mensaje= "Semana 33: Desarrollo del sistema óseo y mayor control de la temperatura corporal."
+              break;
+          case 34:
+              mensaje= "Semana 34: Crecimiento del vello corporal y apertura de los ojos más frecuente."
+              break;
+          case 35:
+              mensaje= "Semana 35: Aumento de los movimientos fetales y preparación para el parto."
+              break;
+          case 36:
+              mensaje= "Semana 36: Maduración del sistema circulatorio y desarrollo del sistema reproductivo."
+              break;
+          case 37:
+              mensaje= "Semana 37: Considerado a término, el bebé está completamente formado y preparado para el nacimiento."
+              break;
+          case 38:
+              mensaje= "Semana 38: Peso y tamaño aproximados a los del bebé al nacer, mejora de la posición del bebé para el parto."
+              break;
+          case 39:
+              mensaje= "Semana 39: Bebé listo para nacer, podemos experimentar algunas contracciones de Braxton Hicks."
+              break
+          case 40:
+                mensaje =  "Semana 40: Última semana de embarazo, preparándose para el parto."
+          case 41:
+                mensaje =  "Semana 41: Ya no queda nada! "
 
+        default: 
+          mensaje = "Semana " + numeroSemana + ": ¡Se agrandó la familia!";
+      }
 
       document.getElementById("resultado").innerHTML = mensaje;
+      document.getElementById("progress-percentage").innerHTML = progress + "%"; // Display percentage value
     }
   </script>
 </head>
@@ -190,5 +215,9 @@
   <h1>¡Jo y Pabli en la dulce espera!</h1>
   <button onclick="obtenerNumeroSemana()">Obtener Número de Semana</button>
   <p id="resultado"></p>
+  <div id="progress-bar">
+    <div id="progress"></div>
+  </div>
+  <p id="progress-percentage"></p>
 </body>
 </html>
